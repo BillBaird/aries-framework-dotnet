@@ -1,5 +1,5 @@
 ﻿using System;
-using AgentFramework.Core.Handlers;
+using AgentFramework.Core.Handlers.Agents;
 using WebAgent.Messages;
 using WebAgent.Protocols.BasicMessage;
 

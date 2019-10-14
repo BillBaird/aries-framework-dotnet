@@ -2,6 +2,7 @@
 using AgentFramework.Core.Models.Records;
 using WebAgent.Protocols;
 using WebAgent.Protocols.BasicMessage;
+using BasicMessageRecord = WebAgent.Protocols.BasicMessage.BasicMessageRecord;
 
 namespace WebAgent.Models
 {

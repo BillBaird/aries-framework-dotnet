@@ -101,7 +101,9 @@ namespace AgentFramework.Core.Utils
         public static T DecodeMessageFromUrlFormat<T>(string encodedMessage)
         {
             var json = DecodeMessageFromUrlFormat(encodedMessage);
-
+            
+            Console.WriteLine($"DecodeMessageFromUrlFormat<{typeof(T).Name}>: {json}");
+            
             return JsonConvert.DeserializeObject<T>(json);
         }
 

@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,8 +14,5 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="AgentFramework.Core.Handlers" Version="2.1.0-preview.491" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="MainPageViewModel.cs" />
   </ItemGroup>
 </Project>
