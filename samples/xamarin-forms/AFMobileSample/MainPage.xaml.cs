@@ -8,6 +8,7 @@ using AgentFramework.Core.Models.Wallets;
 using Autofac;
 using Hyperledger.Indy.DidApi;
 using Hyperledger.Indy.WalletApi;
+using Microsoft.Extensions.Logging;
 using Xamarin.Forms;
 
 namespace AFMobileSample
@@ -17,6 +18,7 @@ namespace AFMobileSample
         private readonly IWalletService _walletService = App.Container.Resolve<IWalletService>();
         private readonly IConnectionService _connectionService = App.Container.Resolve<IConnectionService>();
         private readonly IProvisioningService _provisioningService = App.Container.Resolve<IProvisioningService>();
+        private readonly ILogger<MainPage> _logger = App.Container.Resolve<ILogger<MainPage>>();
 
         private WalletConfiguration _config = new WalletConfiguration { Id = "MyWallet" };
         private WalletCredentials _creds = new WalletCredentials { Key = "SecretKey" };
@@ -31,6 +33,10 @@ namespace AFMobileSample
 
         async void OnProvision(object sender, EventArgs e)
         {
+            _logger.LogInformation("Test");
+            _logger.LogDebug("Debug");
+            _logger.LogTrace("Trace");
+            
             IsBusy = true;
 
             try

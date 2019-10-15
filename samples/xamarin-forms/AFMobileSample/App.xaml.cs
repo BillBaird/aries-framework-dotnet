@@ -27,7 +27,20 @@ namespace AFMobileSample
         private void RegisterContainer()
         {
             var services = new ServiceCollection();
-            services.AddLogging();
+            services.AddLogging(config =>
+            {
+                config
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    .AddFilter("System", LogLevel.Error)
+                    .AddFilter("AFMobileSample", LogLevel.Trace)
+                    //.SetMinimumLevel(LogLevel.Trace)
+                    .AddConsole(options =>
+                    {
+                        options.IncludeScopes = false;
+                        options.DisableColors = false;
+                    })
+                    .AddDebug();
+            });
 
             // Initialize Autofac
             var builder = new ContainerBuilder();
