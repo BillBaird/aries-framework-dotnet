@@ -1,0 +1,50 @@
+@page
+@using AgentFramework.Core.Extensions
+@using Newtonsoft.Json
+@using WebAgent.Utils
+@model WebAgent.Views.Wallet.Content
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Wallet Content";
+    
+    var fmt = new JsonSerializerSettings {Formatting = Formatting.Indented};
+}
+
+<h2>@ViewData["Title"]</h2>
+<table class="table">
+    <thead>
+    <th>Record</th>
+    <th>Tags</th>
+    </thead>
+    <tbody>
+    @foreach (var connection in Model.Provisioning)
+    {
+        <tr>
+            <td style="white-space: pre; font-family: monospace;">@($"{connection.TypeName}:\n{connection.ToJson(fmt)}")</td>
+            <td style="white-space: pre; font-family: monospace;">@connection.TagContents().AsJsonKeyValueObject()</td>
+        </tr>
+    }
+    @foreach (var connection in Model.Connections)
+    {
+        <tr>
+            <td style="white-space: pre; font-family: monospace;">@($"{connection.TypeName}:\n{connection.ToJson(fmt)}")</td>
+            <td style="white-space: pre; font-family: monospace;">@connection.TagContents().AsJsonKeyValueObject()</td>
+        </tr>
+    }
+    @foreach (var connection in Model.Credentials)
+    {
+        <tr>
+            <td style="white-space: pre; font-family: monospace;">@($"{connection.TypeName}:\n{connection.ToJson(fmt)}")</td>
+            <td style="white-space: pre; font-family: monospace;">@connection.TagContents().AsJsonKeyValueObject()</td>
+        </tr>
+    }
+    @foreach (var connection in Model.BasicMessages)
+    {
+        <tr>
+            <td style="white-space: pre; font-family: monospace;">@($"{connection.TypeName}:\n{connection.ToJson(fmt)}")</td>
+            <td style="white-space: pre; font-family: monospace;">@connection.TagContents().AsJsonKeyValueObject()</td>
+        </tr>
+    }
+    </tbody>
+</table>

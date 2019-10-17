@@ -5,7 +5,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ENDPOINT_HOST": "https://47a3f9bf.ngrok.io",
+        "ENDPOINT_HOST": "https://75f40ef0.ngrok.io",
         "AGENT_NAME": "Bill Debug"
       },
       "applicationUrl": "http://localhost:5000/"
