@@ -54,8 +54,6 @@ namespace WebAgent.Views.Wallet
         
         public async Task<IActionResult> OnGetAsync()
         {
-            var fmt = new JsonSerializerSettings {Formatting = Formatting.Indented};
-            
             var context = await _agentContextProvider.GetContextAsync();
             Console.WriteLine(context.ToString());
 
@@ -63,9 +61,28 @@ namespace WebAgent.Views.Wallet
                 _walletOptions.WalletCredentials);
 
             Provisioning = await _recordService.SearchAsync<ProvisioningRecord>(Wallet, null, null, 100);
+            
             Connections = await _recordService.SearchAsync<ConnectionRecord>(Wallet, null, null, 100);
+            Connections.Sort((a, b) =>
+                a.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue) <
+                b.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue)
+                    ? -1
+                    : a.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue) >
+                      b.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue)
+                        ? 1 : 0
+            );
+            
             Credentials = await _recordService.SearchAsync<CredentialRecord>(Wallet, null, null, 100);
+            
             BasicMessages = await _recordService.SearchAsync<BasicMessageRecord>(Wallet, null, null, 100);
+            BasicMessages.Sort((a, b) =>
+                 a.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue) <
+                    b.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue)
+                        ? -1
+                        : a.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue) >
+                          b.CreatedAtUtc.GetValueOrDefault(DateTime.MinValue)
+                            ? 1 : 0
+            );
             
             return Page();
         }

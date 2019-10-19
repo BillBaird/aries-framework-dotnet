@@ -1,6 +1,7 @@
 @page
 @using AgentFramework.Core.Extensions
 @using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
 @using WebAgent.Utils
 @model WebAgent.Views.Wallet.Content
 
@@ -8,7 +9,7 @@
     Layout = "_Layout";
     ViewData["Title"] = "Wallet Content";
     
-    var fmt = new JsonSerializerSettings {Formatting = Formatting.Indented};
+    var fmt = new JsonSerializerSettings {Formatting = Formatting.Indented, Converters = new List<JsonConverter>{ new StringEnumConverter() }};
 }
 
 <h2>@ViewData["Title"]</h2>
